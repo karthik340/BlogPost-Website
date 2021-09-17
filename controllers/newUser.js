@@ -2,7 +2,7 @@ const flash = require('connect-flash')
 module.exports = (req,res)=>{
     var username=""
     var password=""
-    const render = req.flash('validationErrors')
+    const errors = req.flash('validationErrors')
     const data = req.flash('data')[0]
     if(typeof data != "undefined")
     {
@@ -11,7 +11,7 @@ module.exports = (req,res)=>{
     }
     
     return res.render('register',{
-        errors: render,
+        errors: errors,
         username: username,
         password: password
     })

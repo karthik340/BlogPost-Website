@@ -11,7 +11,7 @@
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="page-heading">
                             <h1>Create New Post</h1>
-                            <span class="subheading">Have questions? I have answers.</span>
+                           
                         </div>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
-                        <p>Want to get in touch? Fill out the form below to send me a body and I will get back to you as soon as possible!</p>
+                       <!-- <p>Want to get in touch? Fill out the form below to send me a body and I will get back to you as soon as possible!</p>--->
                         <div class="col-lg-8 col-md-10 mx-auto">
                             <!-- * * * * * * * * * * * * * * *-->
                             <!-- * * SB Forms Contact Form * *-->
@@ -31,17 +31,24 @@
                             <!-- To make this form functional, sign up at-->
                             <!-- https://startbootstrap.com/solution/contact-forms-->
                             <!-- to get an API token!-->
+                            <% if(errors != null && errors.length > 0) { %>
+                                <ul class='list-group'>
+                                    <% for(var i=0; i<errors.length; i++) { %>
+                                        <li class="list-group-item list-group-item-danger"><%=errors[i]%></li>
+                                    <%}%>
+                               </ul>
+                            <% } %>
                             <form action="/posts/store" method="POST" enctype="multipart/form-data">
                                 <div class="control-group">
                                 <div class="form-group floating-label-form-group controls">
                                     <label for="title">Title</label>
-                                    <input class="form-control" id="title" type="text" placeholder="Enter Title for blog..." name="title"  />
+                                    <input class="form-control" id="title" type="text" placeholder="Enter Title for blog..." name="title" value="<%= title %>" />
                                 </div>
                                 </div>
                                <div class="control-group">
                                 <div class="form-group floating-label-form-group controls">
                                     <label for="body">Blog post body</label>
-                                    <textarea class="form-control" id="body" placeholder="Enter your body here..." rows="5" name="body"></textarea>
+                                    <textarea class="form-control" id="body" placeholder="Enter your body here..." rows="5" name="body" value="<%= body %>" ></textarea>
                                     <script>
                                         $('#body').summernote({
                                             placeholder: 'Hello bootstrap 4',
